@@ -1,5 +1,5 @@
 {
-  "name": "ember",
+  "name": "ember-source",
   "license": "MIT",
   "version": "2.5.0-canary",
   "keywords": [
@@ -45,5 +45,8 @@
     "serve-static": "^1.10.0",
     "simple-dom": "^0.2.7",
     "testem": "^1.0.0-rc.3"
+  },
+  "dependencies": {
+    "broccoli-stew": "^1.2.0"
   }
 }
