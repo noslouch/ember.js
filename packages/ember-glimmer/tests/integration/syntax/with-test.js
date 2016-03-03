@@ -11,7 +11,6 @@ moduleFor('Syntax test: {{#with}}', class extends SharedSyntaxConditionalsTest {
   templateFor({ cond, truthy, falsy }) {
     return `{{#with ${cond}}}${truthy}{{else}}${falsy}{{/with}}`;
   }
-
 }, BASIC_TRUTHY_TESTS, BASIC_FALSY_TESTS);
 
 moduleFor('Syntax test: {{#with as}}', class extends SharedSyntaxConditionalsTest {
@@ -34,9 +33,9 @@ moduleFor('Syntax test: {{#with as}}', class extends SharedSyntaxConditionalsTes
 
     this.assertText('False');
 
-    this.runTask(() => this.rerender());
+    this.runTask(() => set(this.context, 'cond1', { greeting: 'Hello' }));
 
-    this.assertText('False');
+    this.assertText('Hello');
   }
 
   ['@test can access alias and original scope']() {

@@ -31,7 +31,7 @@ export function moduleFor(description, TestClass, ...generators) {
 
   generators.forEach(generator => {
     generator.cases.forEach(value => {
-      assign(TestClass.prototype, generator.generate(value));
+      assign(TestClass.prototype, generator.generate(value, generator));
     });
   });
 

@@ -42,6 +42,9 @@ class AbstractConditionalsTest extends RenderingTest {
 
 export const BASIC_TRUTHY_TESTS = {
 
+  truthyValue: true,
+  falsyValue: false,
+
   cases: [
     true,
     ' ',
@@ -66,7 +69,7 @@ export const BASIC_TRUTHY_TESTS = {
     /*jshint +W053 */
   ],
 
-  generate(value) {
+  generate(value, description) {
     return {
 
       [`@test it should consider ${JSON.stringify(value)} truthy`]() {
@@ -78,7 +81,7 @@ export const BASIC_TRUTHY_TESTS = {
 
         this.assertText('T1');
 
-        this.runTask(() => set(this.context, 'cond1', false));
+        this.runTask(() => set(this.context, 'cond1', description.falsyValue));
 
         this.assertText('F1');
 
@@ -94,6 +97,9 @@ export const BASIC_TRUTHY_TESTS = {
 
 export const BASIC_FALSY_TESTS = {
 
+  truthyValue: true,
+  falsyValue: false,
+
   cases: [
     false,
     null,
@@ -105,7 +111,7 @@ export const BASIC_FALSY_TESTS = {
     EmberObject.create({ isTruthy: false })
   ],
 
-  generate(value) {
+  generate(value, description) {
     let tests = {
 
       [`@test it should consider ${JSON.stringify(value)} falsy`]() {
@@ -117,7 +123,7 @@ export const BASIC_FALSY_TESTS = {
 
         this.assertText('F1');
 
-        this.runTask(() => set(this.context, 'cond1', true));
+        this.runTask(() => set(this.context, 'cond1', description.truthyValue));
 
         this.assertText('T1');
 
@@ -140,7 +146,7 @@ export const BASIC_FALSY_TESTS = {
 
         this.assertText('T1');
 
-        this.runTask(() => set(this.context, 'cond1.isTruthy', false));
+        this.runTask(() => set(this.context, 'cond1.isTruthy', description.falsyValue));
 
         this.assertText('F1');
 
